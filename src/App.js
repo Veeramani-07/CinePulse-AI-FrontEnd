@@ -14,7 +14,7 @@ const App = () => {
   const [creds, setCreds] = useState({ user: localStorage.getItem('cinepulse-user') || '', pass: '' });
 
   const API_KEY = 'f63c52c1';
-  const BACKEND_URL = "http://localhost:5000/api/watchlist";
+  const BACKEND_URL = "https://cinepulse-ai-backend-1.onrender.com";
 
   const moodMap = {
     "Feeling Low": "Comedy", "Friday Night Party": "Music", "Adventure Seekers": "Adventure",

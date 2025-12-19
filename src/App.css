@@ -1,38 +1,81 @@
-.App {
-  text-align: center;
+/* CinePulse AI: Optimized Rich UI */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;900&display=swap');
+
+:root {
+  --gold: #f1c40f;
+  --glass: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.1);
+  --bg: #05070a;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  margin: 0; font-family: 'Poppins', sans-serif; color: #fff;
+  background: radial-gradient(circle at top right, #1a1b2e, var(--bg));
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* --- Shared Rich Elements --- */
+.glass, .card, .input-grp, .mood-btn {
+  background: var(--glass); backdrop-filter: blur(15px);
+  border: 1px solid var(--border); border-radius: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.login-btn, .add-btn-final, .logout-btn, .back-button, .trailer-btn-link {
+  padding: 12px 24px; border-radius: 12px; font-weight: 700; cursor: pointer;
+  transition: 0.3s; border: none; display: inline-flex; align-items: center; gap: 8px;
 }
+
+/* --- Auth & Layout --- */
+.login-screen { height: 100vh; display: grid; place-items: center; }
+.login-card { padding: 40px; width: 320px; text-align: center; }
+.input-grp { display: flex; padding: 12px; margin-bottom: 15px; }
+.input-grp input { background: none; border: none; color: #fff; outline: none; width: 100%; }
+
+.logo-text { 
+  font-size: 3rem; font-weight: 900; margin: 0 0 30px;
+  background: linear-gradient(to right, var(--gold), #ff8c00);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* --- Dashboard --- */
+.container { padding: 40px 6%; max-width: 1300px; margin: auto; }
+.header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+
+.mood-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 30px; }
+.mood-btn { padding: 8px 16px; font-size: 12px; color: #ccc; cursor: pointer; border-radius: 50px; }
+.mood-btn:hover, .mood-btn.active { background: var(--gold); color: #000; }
+
+.search-box { display: flex; justify-content: center; gap: 10px; margin-bottom: 50px; }
+.search-box input { width: 400px; padding: 15px; border-radius: 30px; background: var(--glass); border: 1px solid var(--border); color: #fff; outline: none; }
+.search-box button { background: var(--gold); border: none; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; }
+
+/* --- Grid & Cards --- */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; }
+.card { position: relative; overflow: hidden; transition: 0.4s; }
+.card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.card img { width: 100%; height: 300px; object-fit: cover; }
+
+.card-overlay {
+  position: absolute; inset: 0; background: linear-gradient(transparent, #000);
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 15px; opacity: 0; transition: 0.3s;
+}
+.card:hover .card-overlay { opacity: 1; }
+
+/* --- Details & Watchlist --- */
+.details-card { display: flex; gap: 40px; padding: 30px; margin-top: 20px; }
+.details-poster { width: 300px; border-radius: 15px; box-shadow: 0 20px 40px #000; }
+.spec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0; color: #bbb; }
+.spec-grid b { color: var(--gold); }
+
+.login-btn, .add-btn-final { background: var(--gold); color: #000; }
+.logout-btn, .back-button { border: 1px solid var(--gold); color: var(--gold); background: none; }
+.logout-btn:hover, .back-button:hover { background: var(--gold); color: #000; }
+.trailer-btn-link { background: #e74c3c; color: #fff; text-decoration: none; }
+
+.analytics-bar { background: linear-gradient(90deg, #12c2e9, #c471ed, #f64f59); padding: 15px; border-radius: 12px; margin: 30px 0; font-weight: 700; text-align: center; }
+
+.user-controls { padding: 10px; }
+.feedback-input { width: 100%; height: 60px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; color: #fff; padding: 8px; resize: none; margin-top: 10px; box-sizing: border-box;}
+.remove-btn-final { width: 100%; background: rgba(231, 76, 60, 0.2); color: #ff7675; border: 1px solid #e74c3c; padding: 8px; border-radius: 8px; cursor: pointer; margin-top: 10px; }
+
+@media (max-width: 800px) { .details-card { flex-direction: column; } .details-poster { width: 100%; } }
